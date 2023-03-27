@@ -4,7 +4,7 @@ import AsteroidDetails from "./AsteroidDetails";
 import 'jquery/dist/jquery';
 import 'moment/moment';
 import moment from "moment";
-import {NASA_API_KEY} from "../Constant";
+import {NASA_API_KEY, NEO_FEED_URL} from "../Constant";
 import {NeoFeed} from "../interface/NeoFeed";
 import {NearEarthObject} from "../interface/NearEarthObject";
 
@@ -40,9 +40,10 @@ const AsteroidList = () => {
         const fetchAsteroids = async () => {
             setIsListVisible(false);
             setIsListLoading(true);
-            const URL = "https://api.nasa.gov/neo/rest/v1/feed?" +
-                "start_date=" + dates.startDate + "&end_date=" + dates.endDate +
-                "&api_key=" + NASA_API_KEY;
+            const URL = NEO_FEED_URL + "?" +
+                "start_date=" + dates.startDate + "&" +
+                "end_date=" + dates.endDate + "&" +
+                "api_key=" + NASA_API_KEY;
             try {
                 const response = await fetch(URL);
                 const data = await response.json();
