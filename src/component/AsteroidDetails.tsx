@@ -1,21 +1,21 @@
 import {useEffect, useState} from "react";
-import {NASA_API_KEY, NEO_LOOK_UP_URL} from "../Constant";
-import {NearEarthObject} from "../interface/NearEarthObject";
+import {NASA_API_KEY, ASTEROIDS_URL} from "../Constant";
+import {NeoLookUp} from "../interface/NeoLookUp";
 
 const AsteroidDetails = (props: any) => {
-    const [nearEarthObject, setNearEarthObject] = useState<NearEarthObject | null>(null);
+    const [neoLookUp, setNeoLookUp] = useState<NeoLookUp | null>(null);
     const [isCloseApproachDatesVisible, setIsCloseApproachDatesVisible] = useState(false);
     const [isEstimatedDiameterVisible, setIsEstimatedDiameterVisible] = useState(false);
 
     useEffect(() => {
         const fetchAsteroid = async () => {
-            const URL = NEO_LOOK_UP_URL + "/" + props.asteroid.id +
+            const URL = ASTEROIDS_URL + "/" + props.asteroid.id +
                 "?api_key=" + NASA_API_KEY;
             try {
                 const response = await fetch(URL);
                 const data = await response.json();
                 console.log(data)
-                setNearEarthObject(data);
+                setNeoLookUp(data);
             } catch (error) {
                 console.error(error);
             }
@@ -24,11 +24,11 @@ const AsteroidDetails = (props: any) => {
     }, [props.asteroid.id]);
 
     return (<>
-        {!nearEarthObject && <div>Loading...</div>}
-        {nearEarthObject &&
+        {!neoLookUp && <div>Loading...</div>}
+        {neoLookUp &&
             <>
                 <div className={"d-flex mt-4 align-items-center justify-content-between"}>
-                    <h1 className={`"p-0 m-0" ${nearEarthObject.is_potentially_hazardous_asteroid ? "text-danger" : "text-success"}`}>{`Asteroid: ${nearEarthObject.name}`}</h1>
+                    <h1 className={`"p-0 m-0" ${neoLookUp.near_earth_object.is_potentially_hazardous_asteroid ? "text-danger" : "text-success"}`}>{`Asteroid: ${neoLookUp?.near_earth_object.name}`}</h1>
                     <button className={"btn btn-close"}
                             onClick={() => {
                                 props.onClose();
@@ -38,11 +38,11 @@ const AsteroidDetails = (props: any) => {
                 <div className="card my-2">
                     <div className="card-body">
                         <p className="card-text font-size-">
-                            <strong>{`Absolute magnitude: ${nearEarthObject.absolute_magnitude_h}`}</strong>
+                            <strong>{`Absolute magnitude: ${neoLookUp?.near_earth_object.absolute_magnitude_h}`}</strong>
                         </p>
-                        {/*<p className="card-text">*/}
-                        {/*    <strong>{`Designation: ${nearEarthObject.designation}`}</strong>*/}
-                        {/*</p>*/}
+                        <p className="card-text">
+                            <strong>{`Designation: ${neoLookUp?.near_earth_object.designation}`}</strong>
+                        </p>
                         <p className="card-text link-primary"
                            role={"button"}
                            onClick={() => {
@@ -52,7 +52,7 @@ const AsteroidDetails = (props: any) => {
                         {isCloseApproachDatesVisible &&
                             <div
                                 className={"mb-3 d-flex flex-wrap row-cols-auto justify-content-center border border-dark border-opacity-25"}>
-                                {nearEarthObject.close_approach_data.map((data, index) => {
+                                {neoLookUp?.near_earth_object.close_approach_data.map((data, index) => {
                                     return <span className={"m-2"} key={index}>
                                         {`${data.close_approach_date}`}
                                     </span>
@@ -68,15 +68,15 @@ const AsteroidDetails = (props: any) => {
                             <div
                                 className={"mb-3 d-flex flex-wrap row-cols-auto justify-content-center border border-dark border-opacity-25"}>
                                     <span className="m-2">
-                                        {`MIN: ${nearEarthObject.estimated_diameter.kilometers.estimated_diameter_min}`}
+                                        {`MIN: ${neoLookUp?.near_earth_object.estimated_diameter.kilometers.estimated_diameter_min}`}
                                     </span>
                                 <span className="m-2">
-                                        {`MAX: ${nearEarthObject.estimated_diameter.kilometers.estimated_diameter_max}`}
+                                        {`MAX: ${neoLookUp?.near_earth_object.estimated_diameter.kilometers.estimated_diameter_max}`}
                                     </span>
                             </div>}
-                        {/*<p className="card-text">*/}
-                        {/*    <strong>{`Orbital period: ${nearEarthObject.orbital_data.orbital_period}`}</strong>*/}
-                        {/*</p>*/}
+                        <p className="card-text">
+                            <strong>{`Orbital period: ${neoLookUp?.near_earth_object.orbital_data.orbital_period}`}</strong>
+                        </p>
                     </div>
                 </div>
             </>}
