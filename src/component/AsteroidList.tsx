@@ -81,10 +81,10 @@ const AsteroidList = () => {
                         return parseFloat(a.close_approach_data[0].miss_distance.kilometers) -
                             parseFloat(b.close_approach_data[0].miss_distance.kilometers)
                     })
-                    .map((nearEarthObject) => {
+                    .map((nearEarthObject, index) => {
                         const isHazardous = nearEarthObject.is_potentially_hazardous_asteroid;
                         return (
-                            <div className="card my-2" key={nearEarthObject.id}>
+                            <div className="card my-2" key={index}>
                                 <div className="card-body">
                                     <h3 className={`card-title ${isHazardous ? "link-danger" : "link-success"}`}
                                         role={"button"}
