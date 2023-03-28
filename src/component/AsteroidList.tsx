@@ -9,7 +9,7 @@ import {NearEarthObject} from "../interface/NearEarthObject";
 import {fetchAsteroids} from "../service/AsteroidService";
 import {Dates} from "../interface/Dates";
 import AsteroidCard from "./AsteroidCard";
-import BiCalendar2Date from "./icon/BiCalendar2Date";
+import BiCalendar2DateIcon from "./icon/BiCalendar2DateIcon";
 
 
 const AsteroidList = () => {
@@ -57,7 +57,7 @@ const AsteroidList = () => {
                 onApply={dateRangePickerHandler}
             >
                 <i className="btn btn-outline-dark p-0 bi bi-calendar2-date">
-                    <BiCalendar2Date/>
+                    <BiCalendar2DateIcon/>
                 </i>
             </DateRangePicker>
 

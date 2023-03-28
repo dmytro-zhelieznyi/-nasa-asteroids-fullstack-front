@@ -1,4 +1,4 @@
-const BiCalendar2Date = () => {
+const BiCalendar2DateIcon = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
              className="m-0 bi bi-calendar2-date" viewBox="0 0 16 16">
@@ -12,4 +12,4 @@ const BiCalendar2Date = () => {
     )
 }
 
-export default BiCalendar2Date;
+export default BiCalendar2DateIcon;
