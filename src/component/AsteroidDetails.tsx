@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {NASA_API_KEY, ASTEROIDS_URL} from "../Constant";
 import {NeoLookUp} from "../interface/NeoLookUp";
+import {fetchAsteroid} from "../service/AsteroidService";
 
 const AsteroidDetails = (props: any) => {
     const [neoLookUp, setNeoLookUp] = useState<NeoLookUp | null>(null);
@@ -8,19 +8,10 @@ const AsteroidDetails = (props: any) => {
     const [isEstimatedDiameterVisible, setIsEstimatedDiameterVisible] = useState(false);
 
     useEffect(() => {
-        const fetchAsteroid = async () => {
-            const URL = ASTEROIDS_URL + "/" + props.asteroid.id +
-                "?api_key=" + NASA_API_KEY;
-            try {
-                const response = await fetch(URL);
-                const data = await response.json();
-                console.log(data)
-                setNeoLookUp(data);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchAsteroid();
+        fetchAsteroid(props.asteroid.id).then(data => {
+            console.log(data);
+            setNeoLookUp(data);
+        })
     }, [props.asteroid.id]);
 
     return (<>
@@ -30,10 +21,8 @@ const AsteroidDetails = (props: any) => {
                 <div className={"d-flex mt-4 align-items-center justify-content-between"}>
                     <h1 className={`"p-0 m-0" ${neoLookUp.near_earth_object.is_potentially_hazardous_asteroid ? "text-danger" : "text-success"}`}>{`Asteroid: ${neoLookUp?.near_earth_object.name}`}</h1>
                     <button className={"btn btn-close"}
-                            onClick={() => {
-                                props.onClose();
-                            }
-                            }></button>
+                            onClick={props.onClose}
+                    ></button>
                 </div>
                 <div className="card my-2">
                     <div className="card-body">
