@@ -1,10 +1,10 @@
-import AsteroidListItem from "./AsteroidListItem";
+import AsteroidListItem from "../item/AsteroidListItem";
 import React, {useEffect, useState} from "react";
-import {fetchAsteroids} from "../service/AsteroidService";
-import {NeoFeed} from "../interface/NeoFeed";
-import {NearEarthObject} from "../interface/NearEarthObject";
-import AsteroidDetails from "./AsteroidDetails";
-import Loader from "./Loader";
+import {fetchAsteroids} from "../../../service/AsteroidService";
+import {NeoFeed} from "../../../interface/NeoFeed";
+import {NearEarthObject} from "../../../interface/NearEarthObject";
+import AsteroidDetails from "../details/AsteroidDetails";
+import Loader from "../../helper/Loader";
 
 const AsteroidList = (props: any) => {
     const [isListVisible, setIsListVisible] = useState<Boolean>(false);
@@ -43,7 +43,7 @@ const AsteroidList = (props: any) => {
                     }).map((nearEarthObject, index) => {
                         return (
                             <AsteroidListItem
-                                index={index}
+                                key={index}
                                 nearEarthObject={nearEarthObject}
                                 isHazardous={nearEarthObject.is_potentially_hazardous_asteroid}
                                 onClick={() => {

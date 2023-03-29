@@ -1,6 +1,6 @@
 import 'jquery/dist/jquery';
 import 'moment/moment';
-import AsteroidList from "./AsteroidList";
+import AsteroidList from "./asteroid/list/AsteroidList";
 import "./Main.css";
 import DateRangePicker from "react-bootstrap-daterangepicker";
 import {useState} from "react";
@@ -23,8 +23,7 @@ const Main = () => {
     }
 
     return (<>
-        {/*<div className={"navbar navbar-dark bg-body justify-content-start sticky-top"}>*/}
-        <div className={"d-flex justify-content-start sticky-top"}>
+        <div className={"d-flex justify-content-start bg-body sticky-top"}>
             {isDatePickerVisible && <DateRangePicker onApply={dateRangePickerHandler}>
                 <i className={"bi-calendar2-date date-picker"} role={"button"} style={{fontSize: "3rem"}}/>
             </DateRangePicker>}

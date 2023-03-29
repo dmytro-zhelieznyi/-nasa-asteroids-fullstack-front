@@ -6,7 +6,6 @@ const AsteroidListItem = (props: any) => {
     const missDistance: string = props.nearEarthObject.close_approach_data[0].miss_distance.kilometers;
 
     return (
-        // <div className={"list-group-item list-group-item-action d-flex gap-4 py-3"}
         <div className={"d-flex gap-3 col justify-content-start asteroid-list-item rounded rounded-3 my-2"}
              role={"button"}
              onClick={props.onClick}

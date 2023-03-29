@@ -1,0 +1,30 @@
+.text-pulse {
+    animation: pulse-black 5s infinite;
+}
+
+@keyframes pulse-black {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.6;
+    }
+
+    25% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    75% {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: scale(0.95);
+        opacity: 1;
+    }
+}
