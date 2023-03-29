@@ -1,10 +1,10 @@
 import React from 'react';
-import AsteroidList from "./component/AsteroidList";
+import Main from "./component/Main";
 
 function App() {
     return (
         <div className="container">
-            <AsteroidList/>
+            <Main/>
         </div>
     )
 }
