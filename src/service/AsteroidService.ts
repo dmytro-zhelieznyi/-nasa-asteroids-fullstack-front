@@ -8,8 +8,7 @@ export const fetchAsteroids = async (dates: Dates) => {
         "api_key=" + NASA_API_KEY;
     try {
         const response = await fetch(URL);
-        const data = await response.json();
-        return data;
+        return await response.json();
     } catch (error) {
         console.error(error);
         return null;
@@ -21,8 +20,7 @@ export const fetchAsteroid = async (id: string) => {
         "?api_key=" + NASA_API_KEY;
     try {
         const response = await fetch(URL);
-        const data = await response.json();
-        return data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }

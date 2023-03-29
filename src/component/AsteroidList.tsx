@@ -36,27 +36,24 @@ const AsteroidList = (props: any) => {
 
         {isListVisible &&
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 mt-2">
-            {/*<div className="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">*/}
-                {/*<div className="list-group">*/}
-                    {Object.values(neoFeed?.near_earth_objects ?? {}).flat()
-                        .sort((a, b) => {
-                            return parseFloat(a.close_approach_data[0].miss_distance.kilometers) -
-                                parseFloat(b.close_approach_data[0].miss_distance.kilometers)
-                        }).map((nearEarthObject, index) => {
-                            return (
-                                <AsteroidListItem
-                                    index={index}
-                                    nearEarthObject={nearEarthObject}
-                                    isHazardous={nearEarthObject.is_potentially_hazardous_asteroid}
-                                    onClick={() => {
-                                        listVisibilityHandler();
-                                        asteroidIdHandler(nearEarthObject);
-                                    }}
-                                />
-                            )
-                        })
-                    }
-                {/*</div>*/}
+                {Object.values(neoFeed?.near_earth_objects ?? {}).flat()
+                    .sort((a, b) => {
+                        return parseFloat(a.close_approach_data[0].miss_distance.kilometers) -
+                            parseFloat(b.close_approach_data[0].miss_distance.kilometers)
+                    }).map((nearEarthObject, index) => {
+                        return (
+                            <AsteroidListItem
+                                index={index}
+                                nearEarthObject={nearEarthObject}
+                                isHazardous={nearEarthObject.is_potentially_hazardous_asteroid}
+                                onClick={() => {
+                                    listVisibilityHandler();
+                                    asteroidIdHandler(nearEarthObject);
+                                }}
+                            />
+                        )
+                    })
+                }
             </div>}
 
         {nearEarthObject &&

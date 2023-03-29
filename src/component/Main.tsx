@@ -28,10 +28,7 @@ const Main = () => {
                 <DateRangePicker
                     onApply={dateRangePickerHandler}
                 >
-                    {/*<button className={"btn btn-outline-primary py-0"} style={{fontSize: "1rem"}}>*/}
                     <i className={"bi-calendar2-date date-picker"} role={"button"} style={{fontSize: "3rem"}}/>
-                    {/*date*/}
-                    {/*</button>*/}
                 </DateRangePicker>
             </div>}
         <AsteroidList
