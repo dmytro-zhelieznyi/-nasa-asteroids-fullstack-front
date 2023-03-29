@@ -1,11 +1,11 @@
-import {useState} from "react";
-import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'jquery/dist/jquery';
 import 'moment/moment';
-import moment from "moment";
-import {Dates} from "../interface/Dates";
 import AsteroidList from "./AsteroidList";
 import "./Main.css";
+import DateRangePicker from "react-bootstrap-daterangepicker";
+import {useState} from "react";
+import {Dates} from "../interface/Dates";
+import moment from "moment";
 
 const Main = () => {
     const [isDatePickerVisible, setIsDatePickerVisible] = useState<Boolean>(true);
@@ -23,14 +23,12 @@ const Main = () => {
     }
 
     return (<>
-        {isDatePickerVisible &&
-            <div className={"navbar navbar-dark bg-body justify-content-center sticky-top"}>
-                <DateRangePicker
-                    onApply={dateRangePickerHandler}
-                >
-                    <i className={"bi-calendar2-date date-picker"} role={"button"} style={{fontSize: "3rem"}}/>
-                </DateRangePicker>
-            </div>}
+        {/*<div className={"navbar navbar-dark bg-body justify-content-start sticky-top"}>*/}
+        <div className={"d-flex justify-content-start sticky-top"}>
+            {isDatePickerVisible && <DateRangePicker onApply={dateRangePickerHandler}>
+                <i className={"bi-calendar2-date date-picker"} role={"button"} style={{fontSize: "3rem"}}/>
+            </DateRangePicker>}
+        </div>
         <AsteroidList
             dates={dates}
             onDatePickerVisibilityChange={() => setIsDatePickerVisible(prevState => !prevState)}

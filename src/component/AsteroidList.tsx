@@ -1,9 +1,10 @@
 import AsteroidListItem from "./AsteroidListItem";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {fetchAsteroids} from "../service/AsteroidService";
 import {NeoFeed} from "../interface/NeoFeed";
 import {NearEarthObject} from "../interface/NearEarthObject";
 import AsteroidDetails from "./AsteroidDetails";
+import Loader from "./Loader";
 
 const AsteroidList = (props: any) => {
     const [isListVisible, setIsListVisible] = useState<Boolean>(false);
@@ -32,8 +33,7 @@ const AsteroidList = (props: any) => {
     }, [props.dates]);
 
     return (<>
-        {isListLoading && <div>Loading...</div>}
-
+        {isListLoading && <Loader/>}
         {isListVisible &&
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 mt-2">
                 {Object.values(neoFeed?.near_earth_objects ?? {}).flat()

@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {NeoLookUp} from "../interface/NeoLookUp";
 import {fetchAsteroid} from "../service/AsteroidService";
+import Loader from "./Loader";
 
 const AsteroidDetails = (props: any) => {
     const [neoLookUp, setNeoLookUp] = useState<NeoLookUp | null>(null);
@@ -15,7 +16,7 @@ const AsteroidDetails = (props: any) => {
     }, [props.asteroid.id]);
 
     return (<>
-        {!neoLookUp && <div>Loading...</div>}
+        {!neoLookUp && <Loader/>}
         {neoLookUp &&
             <>
                 <div className={"d-flex mt-4 align-items-center justify-content-between"}>
