@@ -1,4 +1,9 @@
-const OrbitalDataField = (props: any) => {
+interface Props {
+    name: string;
+    value: any;
+}
+
+const OrbitalDataField = (props: Props) => {
     return (
         <div className={"card-text d-flex gap-2 mb-1"}>
             <strong>{`${props.name}: `}</strong>

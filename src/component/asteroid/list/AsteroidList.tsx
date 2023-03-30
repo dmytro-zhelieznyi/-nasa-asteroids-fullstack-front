@@ -5,8 +5,15 @@ import {NeoFeed} from "../../../interface/NeoFeed";
 import {NearEarthObject} from "../../../interface/NearEarthObject";
 import AsteroidDetails from "../details/AsteroidDetails";
 import Loader from "../../helper/Loader";
+import {Dates} from "../../../interface/Dates";
 
-const AsteroidList = (props: any) => {
+interface Props {
+    dates: Dates;
+
+    onDatePickerVisibilityChange(): void;
+}
+
+const AsteroidList = (props: Props) => {
     const [isListVisible, setIsListVisible] = useState<Boolean>(false);
     const [isListLoading, setIsListLoading] = useState<Boolean>(true);
     const [neoFeed, setNeoFeed] = useState<NeoFeed | null>(null);
@@ -45,7 +52,6 @@ const AsteroidList = (props: any) => {
                             <AsteroidListItem
                                 key={index}
                                 nearEarthObject={nearEarthObject}
-                                isHazardous={nearEarthObject.is_potentially_hazardous_asteroid}
                                 onClick={() => {
                                     listVisibilityHandler();
                                     asteroidIdHandler(nearEarthObject);
@@ -58,7 +64,7 @@ const AsteroidList = (props: any) => {
 
         {nearEarthObject &&
             <AsteroidDetails
-                asteroid={nearEarthObject}
+                nearEarthObject={nearEarthObject}
                 onClose={() => {
                     asteroidIdHandler(null);
                     listVisibilityHandler();

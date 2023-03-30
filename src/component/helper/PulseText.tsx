@@ -1,7 +1,11 @@
 import {useState} from "react";
 import "./PulseText.css";
 
-const PulseText = (props: any) => {
+interface Props {
+    text: string;
+}
+
+const PulseText = (props: Props) => {
     const [isPuling, setIsPulsing] = useState(true);
 
     return (

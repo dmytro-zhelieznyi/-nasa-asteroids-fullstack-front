@@ -1,6 +1,13 @@
 import "./AsteroidListItem.css";
+import {NearEarthObject} from "../../../interface/NearEarthObject";
 
-const AsteroidListItem = (props: any) => {
+interface Props {
+    nearEarthObject: NearEarthObject;
+
+    onClick(): void;
+}
+
+const AsteroidListItem = (props: Props) => {
     const isHazardousStyle: string = props.nearEarthObject.is_potentially_hazardous_asteroid ?
         "bi-emoji-angry text-danger" : "bi-emoji-smile text-success";
     const missDistance: string = props.nearEarthObject.close_approach_data[0].miss_distance.kilometers;
@@ -11,7 +18,6 @@ const AsteroidListItem = (props: any) => {
              onClick={props.onClick}
         >
             <i className={`bi bi-emoji-angry ${isHazardousStyle}`} style={{fontSize: "2rem",}}/>
-            {/*<div className={"d-flex gap-2  justify-content-between"} style={{minWidth: 400}}>*/}
             <div className={"d-flex gap-2 justify-content-between"}>
                 <div>
                     <h6 className={"mb-0"}>{props.nearEarthObject.name}</h6>
